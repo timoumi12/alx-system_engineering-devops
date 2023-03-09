@@ -1,1 +1,1 @@
-chmod hello 664 hello
+chmod --refrence=olleh hello
