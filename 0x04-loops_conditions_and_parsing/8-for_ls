@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#display The content of the current directory
+
+files=$(ls)
+for f in $files
+do
+	name=$(echo "$f" | cut -d'-' -f2-)
+    echo "$name"
+done
