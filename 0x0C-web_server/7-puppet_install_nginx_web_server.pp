@@ -9,5 +9,5 @@ exec {'install':
       location /redirect_me {
         return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
       }
-}" > /etc/nginx/sites-available/default'
+}" > /etc/nginx/sites-available/default',
 }
