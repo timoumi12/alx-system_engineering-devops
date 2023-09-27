@@ -6,7 +6,6 @@ apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
 echo "server {
       listen 80;
-      listen [::]:80 default_server;
       root   /etc/nginx/html;
       index  index.html;
       location /redirect_me {
