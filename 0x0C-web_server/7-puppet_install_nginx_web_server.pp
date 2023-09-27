@@ -2,12 +2,5 @@
 
 exec {'install':
   provider => shell,
-  command  => 'echo "server {
-      listen 80;
-      root   /etc/nginx/html;
-      index  index.html;
-      location /redirect_me {
-        return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
-      }
-}" > /etc/nginx/sites-available/default',
+  command  => 'sudo apt-get -y update ; sudo apt-get -y install nginx ; echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html ; sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me www.linkedin.com/in/iheb-timoumi-576a311b0 permanent;/" /etc/nginx/sites-available/default ; sudo service nginx start',
 }
