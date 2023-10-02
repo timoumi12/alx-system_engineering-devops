@@ -4,18 +4,7 @@
 apt-get -y update
 apt-get -y install nginx
 echo "Hello World!" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
-echo "server {
-    listen 80;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
-    }
-    error_page 404 /404.html;
-    location = /404.html{
-        root /etc/nginx/html;
-        internal;
-    }
-}" > /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
+sed -i '/listen 80 default_server/a rewrite ^/redirect_me www.linkedin.com/in/iheb-timoumi-576a311b0 permanent;' /etc/nginx/sites-available/default
+sed -i '/listen 80 default_server/a error_page 404 /custom_404.html; location = /custom_404.html {root /usr/share/nginx/html;\n internal;}' /etc/nginx/sites-available/default
 sudo service nginx restart
