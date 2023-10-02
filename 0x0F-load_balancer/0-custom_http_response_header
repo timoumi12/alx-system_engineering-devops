@@ -3,5 +3,19 @@
 
 apt-get -y update
 apt-get -y install nginx
-sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo echo "server {
+    listen 80;
+    root   /etc/nginx/html;
+    index  index.html;
+    location /redirect_me {
+        return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
+    }
+    error_page 404 /404.html;
+    location = /404.html{
+        root /etc/nginx/html;
+        internal;
+    }
+    server_name _;
+	add_header X-Served-By $HOSTNAME;
+}" > /etc/nginx/sites-available/default
 sudo service nginx restart
