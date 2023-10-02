@@ -1,21 +1,12 @@
 #!/usr/bin/env bash
-# configure web-02 to be identical to web-01
+# configures an Nginx
 
-apt-get -y update
-apt-get -y install nginx
-sudo echo "server {
-    listen 80;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
-    }
-    error_page 404 /404.html;
-    location = /404.html{
-        root /etc/nginx/html;
-        internal;
-    }
-    server_name _;
-	add_header X-Served-By $HOSTNAME;
-}" > /etc/nginx/sites-available/default
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i '/server_name _;/a error_page 404 /custom_404.html;\nlocation = /custom_404.html {\nroot /usr/share/nginx/html;\ninternal;\n}' /etc/nginx/sites-available/default
+sudo sed -i '/server_name _;/a add_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
 sudo service nginx restart
