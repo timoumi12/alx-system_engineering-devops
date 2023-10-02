@@ -9,6 +9,9 @@ echo "server {
     listen 80;
     root   /etc/nginx/html;
     index  index.html;
+    location /redirect_me {
+        return 301 www.linkedin.com/in/iheb-timoumi-576a311b0;
+    }
     error_page 404 /404.html;
     location = /404.html{
         root /etc/nginx/html;
