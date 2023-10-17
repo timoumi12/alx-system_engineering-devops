@@ -1,0 +1,1 @@
+A database replica, in the context of databases, is a copy of the original (primary) database that is synchronized in real-time or near real-time to the primary database. Replication involves duplicating the data from the primary database to one or more replica databases. These replicas can serve various purposes.
