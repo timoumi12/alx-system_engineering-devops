@@ -1,0 +1,1 @@
+An API (Application Programming Interface) is a set of rules and protocols that allows one software application to interact with and make use of the functionality provided by another software application, service, or platform. APIs define the methods and data structures that developers can use to request and exchange information between different systems.
